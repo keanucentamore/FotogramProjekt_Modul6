@@ -1,11 +1,24 @@
 :root {
-    /* HTML Farben */
+    /* HTML COLORS */
     --color-background: #06171E;
     --color-headerfooter: #09212A;
     --color-text: #FFFFFF;
 
-    /* Breiten */
+    /* GALLERY COLORS */
+    --color-border: #124658;
+    --color-thumbnailhover: #FD5B4F;
+
+    /* WIDTHS */
     --content-width: 1440px;
     --content-padding: 140px;
+    --gallery-width: 1146px;
 
+    /* THUMBNAIL IMAGES */
+    --thumbnail-size: 150px;
+    --thumbnail-radius: 12px;
+    --gallery-gap-row: 48px;
+    --gallery-gap-column: 16px; 
+
+    /* TRANSITION */ 
+    --transition-duration: 200ms;
 }
