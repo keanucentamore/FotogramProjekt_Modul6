@@ -1,0 +1,42 @@
+
+@font-face {
+    font-family: "Inter";
+    src: url("./fonts/inter-v20-latin-regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Inter";
+    src: url("./fonts/inter-v20-latin-700.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* MAIN FONT-SIZE */
+
+body {
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+/* TITLES */
+
+.page-title {
+    font-size: 56px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+/* FOOTER TEXT */
+
+.footer-copyright {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.2;
+}
+

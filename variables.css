@@ -1,0 +1,11 @@
+:root {
+    /* HTML Farben */
+    --color-background: #06171E;
+    --color-headerfooter: #09212A;
+    --color-text: #FFFFFF;
+
+    /* Breiten */
+    --content-width: 1440px;
+    --content-padding: 140px;
+
+}
