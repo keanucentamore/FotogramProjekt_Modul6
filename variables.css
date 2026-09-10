@@ -7,6 +7,10 @@
     /* GALLERY COLORS */
     --color-border: #124658;
     --color-thumbnailhover: #FD5B4F;
+    --color-button: #21272E;
+    --color-button-hover: #2C333B;
+    --color-thumbnailhover: #FD5B4F;
+    --color-backdrop: rgba(6, 23, 30, 0.85);
 
     /* WIDTHS */
     --content-width: 1440px;
@@ -18,6 +22,15 @@
     --thumbnail-radius: 12px;
     --gallery-gap-row: 48px;
     --gallery-gap-column: 16px; 
+
+    /* DIALOG */
+    --dialog-width: 688px;
+    --dialog-height: 675px;
+    --dialog-padding: 64px;
+    --dialog-radius: 40px;
+    --dialog-image-width: 560px;
+    --dialog-image-height: 375px;
+    --dialog-button-size: 60px;
 
     /* TRANSITION */ 
     --transition-duration: 200ms;

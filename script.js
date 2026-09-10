@@ -1,6 +1,3 @@
-/* Die drei Arrays gehoeren zeilenweise zusammen: 
-   gleicher Index = gleiches Foto. */
-
 const clubImages = [
   "a_snrs_eingang-baustelle.webp",
   "b_snrs_aussenbereich-baustelle_eins.webp",
@@ -40,12 +37,15 @@ const clubImageAlts = [
   "Fertiggestellter Außenbereich im Jahr 2025"
 ];
 
-/* Startet die Seite, sobald das HTML geladen ist. */
+let currentIndex = 0;
+let isDialogOpen = false;
+
+/* GALLERY */
+
 function init() {
   renderGallery();
 }
 
-/* Schreibt alle Vorschaubilder in den Galerie-Container. */
 function renderGallery() {
   const gallery = document.getElementById("gallery");
   gallery.innerHTML = "";
@@ -54,11 +54,99 @@ function renderGallery() {
   }
 }
 
-/* Liefert das HTML eines einzelnen Vorschaubildes. */
 function getThumbnailPreview(index) {
   return `
-    <button class="thumbnail" id="thumbnail-${index}" onclick=""
+    <button class="thumbnail" id="thumbnail-${index}" onclick="openDialog(${index})"
             aria-label="${clubImageTitles[index]} in Großansicht öffnen">
       <img src="./img/${clubImages[index]}" alt="${clubImageAlts[index]}">
     </button>`;
+}
+
+/* DIALOG */ 
+
+function openDialog(index) {
+  const overlay = document.getElementById("dialogOverlay");
+  currentIndex = index;
+  isDialogOpen = true;
+  overlay.innerHTML = getDialogTemplate();
+  overlay.classList.remove("d-none");
+  document.getElementById("dialogClose").focus();
+}
+
+function closeDialog() {
+  const overlay = document.getElementById("dialogOverlay");
+  isDialogOpen = false;
+  overlay.classList.add("d-none");
+  overlay.innerHTML = "";
+  document.getElementById("thumbnail-" + currentIndex).focus();
+}
+
+function getDialogTemplate() {
+  return `
+    <article class="dialog" role="dialog" aria-modal="true" aria-labelledby="dialogTitle"
+             onclick="event.stopPropagation()">
+      <header class="dialog-header">
+        <h2 class="dialog-title" id="dialogTitle">${clubImageTitles[currentIndex]}</h2>
+        <button class="dialog-close" id="dialogClose" onclick="closeDialog()" aria-label="Ansicht schließen">
+          <img src="./icon/close.svg" alt="close icon">
+        </button>
+      </header>
+      <img class="dialog-image" id="dialogImage" src="./img/${clubImages[currentIndex]}"
+           alt="${clubImageAlts[currentIndex]}">
+      ${getDialogControlsTemplate()}
+    </article>`;
+}
+
+function getDialogControlsTemplate() {
+  return `
+    <nav class="dialog-controls" aria-label="Bildnavigation">
+      <button class="dialog-button dialog-button-previous" onclick="showPrevious()" aria-label="Vorheriges Bild">
+        <img src="./icon/arrow.svg" alt="Pfeil nach links">
+      </button>
+      <span class="dialog-counter" id="dialogCounter">${getCounterText()}</span>
+      <button class="dialog-button" onclick="showNext()" aria-label="Nächstes Bild">
+        <img src="./icon/arrow.svg" alt="Pfeil nach rechts">
+      </button>
+    </nav>`;
+}
+
+function getCounterText() {
+  return (currentIndex + 1) + "/" + clubImages.length;
+}
+
+function showNext() {
+  currentIndex = currentIndex + 1;
+  if (currentIndex > clubImages.length - 1) {
+    currentIndex = 0;
+  }
+  updateDialog();
+}
+
+function showPrevious() {
+  currentIndex = currentIndex - 1;
+  if (currentIndex < 0) {
+    currentIndex = clubImages.length - 1;
+  }
+  updateDialog();
+}
+
+function updateDialog() {
+  const IMAGE = document.getElementById("dialogImage");
+  document.getElementById("dialogTitle").innerHTML = clubImageTitles[currentIndex];
+  IMAGE.setAttribute("src", "./img/" + clubImages[currentIndex]);
+  IMAGE.setAttribute("alt", clubImageAlts[currentIndex]);
+  document.getElementById("dialogCounter").innerHTML = getCounterText();
+}
+
+function handleKeyDown(event) {
+  if (!isDialogOpen) {
+    return;
+  }
+  if (event.key === "Escape") {
+    closeDialog();
+  } else if (event.key === "ArrowLeft") {
+    showPrevious();
+  } else if (event.key === "ArrowRight") {
+    showNext();
+  }
 }

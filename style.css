@@ -74,6 +74,119 @@ body {
     object-fit: cover;
 }
 
+/* DIALOG: BACKGROUND */
+
+.dialog-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 16px;
+    background-color: var(--color-backdrop);
+}
+
+.dialog-overlay.d-none {
+    display: none;
+}
+
+/* DIALOG: KARTE */
+
+.dialog {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: var(--dialog-width);
+    min-height: var(--dialog-height);
+    padding: 0 var(--dialog-padding) 32px;
+    border-radius: var(--dialog-radius);
+    background-color: var(--color-headerfooter);
+}
+
+.dialog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding-top: 56px;
+}
+
+.dialog-close {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 34px;
+    height: 34px;
+    border: none;
+    border-radius: 50%;
+    background-color: transparent;
+    cursor: pointer;
+    transition: background-color var(--transition-duration) ease;
+}
+
+.dialog-close:hover {
+    background-color: var(--color-button);
+}
+
+.dialog-close img {
+    display: block;
+    width: 14px;
+    height: 14px;
+}
+
+.dialog-image {
+    width: var(--dialog-image-width);
+    height: var(--dialog-image-height);
+    margin-top: 46px;
+    object-fit: cover;
+}
+
+/*DIALOG: CHANGE PICTURE*/
+
+.dialog-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    margin-top: 48px;
+}
+
+.dialog-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: var(--dialog-button-size);
+    height: var(--dialog-button-size);
+    border: none;
+    border-radius: 50%;
+    background-color: var(--color-button);
+    cursor: pointer;
+    transition: background-color var(--transition-duration) ease;
+}
+
+.dialog-button:hover {
+    background-color: var(--color-button-hover);
+}
+
+.dialog-button img {
+    display: block;
+    width: 22px;
+    height: 19px;
+}
+
+/* Es gibt nur eine Pfeil-Grafik, die nach rechts zeigt. */
+.dialog-button-previous img {
+    transform: rotate(180deg);
+}
+
+.dialog-counter {
+    width: 62px;
+    text-align: center;
+}
+
 /* FOOTER */
 
 .page-footer {
